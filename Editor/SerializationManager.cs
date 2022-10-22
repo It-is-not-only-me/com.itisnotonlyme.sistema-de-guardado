@@ -1,72 +1,87 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
-public class SerializationManager
+namespace ItIsNotOnlyMe.SistemaDeGuardado
 {
-    public static bool Save(string saveName, object saveData)
+    [CreateAssetMenu(fileName = "Serializacion de objetos", menuName = "Sistema de Guardado/Serializacion de objetos")]
+    public class SerializacionDeDatosSO : ScriptableObject
     {
-        BinaryFormatter formatter = GetBinaryFormatter();
-        string pathDirectory = Application.persistentDataPath + "/saves";
+        public string NombreCarpeta = "saves";
+        public string Extension = ".objeto";
 
-        if (!Directory.Exists(pathDirectory))
-            Directory.CreateDirectory(pathDirectory);
+        [Space]
 
-        string path = pathDirectory + "/" + saveName + ".save";
+        public List<SurrogateSO> Surrogates = new List<SurrogateSO>();
 
-        FileStream file = File.Create(path);
-        formatter.Serialize(file, saveData);
-        file.Close();
-
-        return true;
-    }
-
-    public static object Load(string path)
-    {
-        if (!File.Exists(path)) 
-            return null;
-
-        BinaryFormatter formatter = GetBinaryFormatter();
-        FileStream file = File.Open(path, FileMode.Open);
-
-        object save;
-
-        try 
+        public bool Guardar(string nombre, object objeto)
         {
-            save = formatter.Deserialize(file);
-        }
-        catch (SerializationException)
-        {
-            Debug.LogErrorFormat("Failed to load file at {0}", path);
-            save = null;
-        }
-        catch (SecurityException)
-        {
-            Debug.LogErrorFormat("Failed to load file at {0} for security exception", path);
-            save = null;
+            BinaryFormatter formatter = GetBinaryFormatter();
+
+            string pathDirectorio = Application.persistentDataPath + "/" + NombreCarpeta;
+
+            if (!Directory.Exists(pathDirectorio))
+                Directory.CreateDirectory(pathDirectorio);
+
+            string path = pathDirectorio + "/" + nombre + "." + Extension;
+
+            FileStream archivo = File.Create(path);
+            formatter.Serialize(archivo, objeto);
+            archivo.Close();
+
+            return true;
         }
 
-        file.Close();
-        return save;
-    }
+        public object Cargar(string path)
+        {
+            if (!File.Exists(path))
+                return null;
 
-    private static BinaryFormatter GetBinaryFormatter()
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
+            BinaryFormatter formatter = GetBinaryFormatter();
+            FileStream archivo = File.Open(path, FileMode.Open);
 
-        SurrogateSelector selector = new SurrogateSelector();
+            object objeto;
 
-        Vector3SerializationSurrogate vector3Surrogate = new Vector3SerializationSurrogate();
+            try
+            {
+                objeto = formatter.Deserialize(archivo);
+            }
+            catch (SerializationException)
+            {
+                Debug.LogErrorFormat("Falla al abrir archivo en {0}", path);
+                objeto = null;
+            }
+            catch (SecurityException)
+            {
+                Debug.LogErrorFormat("Falla al abrir archivo en {0} por cuestiones de seguridad", path);
+                objeto = null;
+            }
 
-        selector.AddSurrogate(typeof(Vector3), new StreamingContext(StreamingContextStates.All), vector3Surrogate);
+            archivo.Close();
+            return objeto;
+        }
 
-        formatter.SurrogateSelector = selector;
 
-        return formatter;
+        private BinaryFormatter GetBinaryFormatter()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            SurrogateSelector selector = new SurrogateSelector();
+
+            StreamingContext streamingContext = new StreamingContext(StreamingContextStates.All);
+            foreach (SurrogateSO surrogate in Surrogates)
+            {
+                selector.AddSurrogate(surrogate.Tipo, streamingContext, surrogate);
+            }
+
+            formatter.SurrogateSelector = selector;
+
+            return formatter;
+        }
     }
 }
+
+
