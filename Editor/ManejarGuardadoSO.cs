@@ -14,8 +14,8 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
         [Space]
 
         [SerializeField] private EventoSincronizarObjeto _sincronizarObjetos;
-        [SerializeField] private EventoGuardar _eventoGuardar;
-        [SerializeField] private EventoCargar _eventoCargar;
+        [SerializeField] private EventoGuardarSO _eventoGuardar;
+        [SerializeField] private EventoCargarSO _eventoCargar;
 
         private List<IGuardable> _objetosGuardables = new List<IGuardable>();
 
@@ -25,10 +25,10 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
                 _sincronizarObjetos.EventoSincronizar += GuardarObjetos;
 
             if (_eventoGuardar != null)
-                _eventoGuardar.Guardar += Guardar;
+                _eventoGuardar.EventoGuardar += Guardar;
 
             if (_eventoCargar != null)
-                _eventoCargar.Cargar += Cargar;
+                _eventoCargar.EventoCargar += Cargar;
         }
 
         private void OnDisable()
@@ -37,18 +37,13 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
                 _sincronizarObjetos.EventoSincronizar -= GuardarObjetos;
 
             if (_eventoGuardar != null)
-                _eventoGuardar.Guardar -= Guardar;
+                _eventoGuardar.EventoGuardar -= Guardar;
 
             if (_eventoCargar != null)
-                _eventoCargar.Cargar -= Cargar;
+                _eventoCargar.EventoCargar -= Cargar;
         }
 
-        private void GuardarObjetos(IGuardable guardable)
-        {
-            if (_objetosGuardables.Contains(guardable))
-                return;
-            _objetosGuardables.Add(guardable);
-        }
+        private void GuardarObjetos(IGuardable guardable) => _objetosGuardables.Add(guardable);
 
         private void Guardar()
         {

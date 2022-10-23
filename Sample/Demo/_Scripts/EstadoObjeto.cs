@@ -1,4 +1,5 @@
 using ItIsNotOnlyMe.SistemaDeGuardado;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,14 @@ using UnityEngine;
 public class EstadoObjeto : MonoBehaviour, IGuardable
 {
     [System.Serializable]
-    public enum TipoObjeto
+    private enum TipoObjeto
     {
         Cubo,
         Capsula
     }
 
     [System.Serializable]
-    public class Estado
+    private class Estado
     {
         public TipoObjeto Tipo;
         public Vector3 Posicion;
@@ -31,14 +32,9 @@ public class EstadoObjeto : MonoBehaviour, IGuardable
         return _id;
     }
 
-    private void Update()
-    {
-        _estado.Posicion = transform.position;
-        _estado.Rotacion = transform.rotation;
-    }
-
     public void Cargar(object estado)
     {
+        Debug.Log("Cargando...");
         Estado nuevoEstado = (Estado)estado;
         _estado.Tipo = nuevoEstado.Tipo;
         _estado.Posicion = nuevoEstado.Posicion;
@@ -50,6 +46,9 @@ public class EstadoObjeto : MonoBehaviour, IGuardable
 
     public object Guardar()
     {
+        Debug.Log("Guardando...");
+        _estado.Posicion = transform.position;
+        _estado.Rotacion = transform.rotation;
         return _estado;
     }
 }

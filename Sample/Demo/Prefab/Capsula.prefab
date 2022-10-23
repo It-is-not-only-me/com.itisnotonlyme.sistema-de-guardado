@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6344277005856375656}
   - component: {fileID: 6344277005856375703}
   - component: {fileID: 6344277005856375702}
+  - component: {fileID: -6080071345954753503}
+  - component: {fileID: 6834287623953683720}
   m_Layer: 0
   m_Name: Capsula
   m_TagString: Untagged
@@ -115,3 +117,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6080071345954753503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6344277005856375701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735f2e9fdc144e649a4fcc3a488912d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _estado:
+    Tipo: 1
+    Posicion: {x: 0, y: 0, z: 0}
+    Rotacion: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6834287623953683720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6344277005856375701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f36880b62ea0d7e4fbd3a20392863826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sincronizarObjeto: {fileID: 11400000, guid: a162062e0c4fb8643851084acc247252, type: 2}

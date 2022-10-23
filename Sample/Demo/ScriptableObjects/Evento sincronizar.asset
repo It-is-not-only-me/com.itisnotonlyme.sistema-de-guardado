@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11a41275295b8c246ac1e73b9ef85ddc, type: 3}
-  m_Name: Sincronizar
+  m_Script: {fileID: 11500000, guid: 572a9f4c5f77353489fea11981bd7ee7, type: 3}
+  m_Name: Evento sincronizar
   m_EditorClassIdentifier: 

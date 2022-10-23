@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6664516557721046835}
   - component: {fileID: 6664516557721046832}
   - component: {fileID: 6664516557721046844}
+  - component: {fileID: -72562414368166033}
+  - component: {fileID: 3597050319293030605}
   m_Layer: 0
   m_Name: Cubo
   m_TagString: Untagged
@@ -114,3 +116,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-72562414368166033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664516557721046833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735f2e9fdc144e649a4fcc3a488912d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _estado:
+    Tipo: 0
+    Posicion: {x: 0, y: 0, z: 0}
+    Rotacion: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3597050319293030605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664516557721046833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f36880b62ea0d7e4fbd3a20392863826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sincronizarObjeto: {fileID: 11400000, guid: a162062e0c4fb8643851084acc247252, type: 2}

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BotonEventoVoid : MonoBehaviour, IPointerClickHandler
+public class BotonEventoGenerar : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private EventoVoidSO _evento;
+    [SerializeField] private EventoVoidSO _eventoGenerar;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _evento?.Invoke();
+        _eventoGenerar?.Invoke();
     }
 }

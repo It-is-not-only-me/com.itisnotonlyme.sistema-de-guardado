@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GeneradorDeObjetos : MonoBehaviour
 {
-    [SerializeField] private List<Objeto> _listaDeObjetosAGenerar = new List<Objeto>();
+    [SerializeField] private List<EstadoObjeto> _listaDeObjetosAGenerar = new List<EstadoObjeto>();
 
     [Space]
 

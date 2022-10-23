@@ -4,10 +4,10 @@ using UnityEngine;
 namespace ItIsNotOnlyMe.SistemaDeGuardado
 {
     [CreateAssetMenu(fileName = "Evento cargar", menuName = "Sistema de Guardado/Evento/Cargar")]
-    public class EventoCargar : ScriptableObject
+    public class EventoCargarSO : ScriptableObject
     {
-        public Action Cargar;
+        public Action EventoCargar;
 
-        public void Cargando() => Cargar?.Invoke();
+        public void Cargando() => EventoCargar?.Invoke();
     }
 }
