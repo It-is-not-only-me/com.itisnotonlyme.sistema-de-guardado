@@ -10,8 +10,8 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
     [CreateAssetMenu(fileName = "Sistema de guardado", menuName = "Sistema de Guardado/Sistema de guardado")]
     public class SistemaDeGuardadoSO : ScriptableObject
     {
-        public string NombreCarpeta = "saves";
-        public string Extension = ".objeto";
+        [SerializeField] private string _nombreCarpeta = "saves";
+        [SerializeField] private string _extension = ".save";
 
         [Space]
 
@@ -21,12 +21,12 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
         {
             BinaryFormatter formatter = GetBinaryFormatter();
 
-            string pathDirectorio = Application.persistentDataPath + "/" + NombreCarpeta;
+            string pathDirectorio = Application.persistentDataPath + "/" + _nombreCarpeta;
 
             if (!Directory.Exists(pathDirectorio))
                 Directory.CreateDirectory(pathDirectorio);
 
-            string path = pathDirectorio + "/" + nombre + "." + Extension;
+            string path = pathDirectorio + "/" + nombre + "." + _extension;
 
             FileStream archivo = File.Create(path);
             formatter.Serialize(archivo, objeto);

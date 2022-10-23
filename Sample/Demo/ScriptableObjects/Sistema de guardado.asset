@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ecf636f43d5abb44be0a7c401fc68ab, type: 3}
-  m_Name: GuardarObjetos
+  m_Name: Sistema de guardado
   m_EditorClassIdentifier: 
-  NombreCarpeta: objectos
-  Extension: .objeto
-  Surrogates:
+  _nombreCarpeta: saves
+  _extension: .save
+  Sustitutos:
   - {fileID: 11400000, guid: 0dcd6415cc1fc5c4d8467788f173781a, type: 2}
   - {fileID: 11400000, guid: c3b470192ecd1804580a728c760c23ba, type: 2}
