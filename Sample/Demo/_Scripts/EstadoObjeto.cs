@@ -34,7 +34,6 @@ public class EstadoObjeto : MonoBehaviour, IGuardable
 
     public void Cargar(object estado)
     {
-        Debug.Log("Cargando...");
         Estado nuevoEstado = (Estado)estado;
         _estado.Tipo = nuevoEstado.Tipo;
         _estado.Posicion = nuevoEstado.Posicion;
@@ -46,7 +45,6 @@ public class EstadoObjeto : MonoBehaviour, IGuardable
 
     public object Guardar()
     {
-        Debug.Log("Guardando...");
         _estado.Posicion = transform.position;
         _estado.Rotacion = transform.rotation;
         return _estado;

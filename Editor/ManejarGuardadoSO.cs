@@ -43,12 +43,18 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
                 _eventoCargar.EventoCargar -= Cargar;
         }
 
-        private void GuardarObjetos(IGuardable guardable) => _objetosGuardables.Add(guardable);
+        private void GuardarObjetos(IGuardable guardable)
+        {
+            _objetosGuardables.Add(guardable);
+        }
 
         private void Guardar()
         {
             foreach (IGuardable guardable in _objetosGuardables)
             {
+                if (guardable == null)
+                    continue;
+
                 string nombre = guardable.Id();
                 object estado = guardable.Guardar();
 
@@ -60,6 +66,9 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
         {
             foreach (IGuardable guardable in _objetosGuardables)
             {
+                if (guardable == null)
+                    continue;
+
                 string nombre = guardable.Id();
                 object nuevoEstado = _sistemaDeGuardado.Cargar(nombre);
 
