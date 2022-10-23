@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace ItIsNotOnlyMe.SistemaDeGuardado
 {
-    public interface ISurrogate : ISerializationSurrogate
+    public interface ISerializacionSustituto : ISerializationSurrogate
     {
         public Type Tipo { get; }
     }

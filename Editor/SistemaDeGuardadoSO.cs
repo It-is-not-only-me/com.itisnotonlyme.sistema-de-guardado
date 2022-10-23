@@ -7,15 +7,15 @@ using UnityEngine;
 
 namespace ItIsNotOnlyMe.SistemaDeGuardado
 {
-    [CreateAssetMenu(fileName = "Serializacion de objetos", menuName = "Sistema de Guardado/Serializacion de objetos")]
-    public class SerializacionDeDatosSO : ScriptableObject
+    [CreateAssetMenu(fileName = "Sistema de guardado", menuName = "Sistema de Guardado/Sistema de guardado")]
+    public class SistemaDeGuardadoSO : ScriptableObject
     {
         public string NombreCarpeta = "saves";
         public string Extension = ".objeto";
 
         [Space]
 
-        public List<SurrogateSO> Surrogates = new List<SurrogateSO>();
+        public List<SerializacionSustitutoSO> Sustitutos = new List<SerializacionSustitutoSO>();
 
         public bool Guardar(string nombre, object objeto)
         {
@@ -72,9 +72,9 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
             SurrogateSelector selector = new SurrogateSelector();
 
             StreamingContext streamingContext = new StreamingContext(StreamingContextStates.All);
-            foreach (SurrogateSO surrogate in Surrogates)
+            foreach (SerializacionSustitutoSO sustituto in Sustitutos)
             {
-                selector.AddSurrogate(surrogate.Tipo, streamingContext, surrogate);
+                selector.AddSurrogate(sustituto.Tipo, streamingContext, sustituto);
             }
 
             formatter.SurrogateSelector = selector;
