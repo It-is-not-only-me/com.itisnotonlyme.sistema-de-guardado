@@ -21,12 +21,12 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
         {
             BinaryFormatter formatter = GetBinaryFormatter();
 
-            string pathDirectorio = Application.persistentDataPath + "/" + _nombreCarpeta;
+            string pathDirectorio = $"{Application.persistentDataPath}/{_nombreCarpeta}";
 
             if (!Directory.Exists(pathDirectorio))
                 Directory.CreateDirectory(pathDirectorio);
 
-            string path = pathDirectorio + "/" + nombre + "." + _extension;
+            string path = $"{pathDirectorio}/{nombre}.{_extension}";
 
             FileStream archivo = File.Create(path);
             formatter.Serialize(archivo, objeto);
@@ -35,15 +35,17 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
             return true;
         }
 
-        public object Cargar(string path)
+        public object Cargar(string nombre)
         {
+            string path = $"{Application.persistentDataPath}/{_nombreCarpeta}/{nombre}.{_extension}";
+
             if (!File.Exists(path))
                 return null;
 
             BinaryFormatter formatter = GetBinaryFormatter();
             FileStream archivo = File.Open(path, FileMode.Open);
 
-            object objeto;
+            object objeto = null;
 
             try
             {
@@ -52,12 +54,10 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
             catch (SerializationException)
             {
                 Debug.LogErrorFormat("Falla al abrir archivo en {0}", path);
-                objeto = null;
             }
             catch (SecurityException)
             {
                 Debug.LogErrorFormat("Falla al abrir archivo en {0} por cuestiones de seguridad", path);
-                objeto = null;
             }
 
             archivo.Close();
@@ -69,6 +69,19 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
+            SurrogateSelector selector = GetSurrogateSelector();           
+
+            if (selector != null)
+                formatter.SurrogateSelector = selector;
+
+            return formatter;
+        }
+
+        private SurrogateSelector GetSurrogateSelector()
+        {
+            if (Sustitutos.Count <= 0) 
+                return null;
+
             SurrogateSelector selector = new SurrogateSelector();
 
             StreamingContext streamingContext = new StreamingContext(StreamingContextStates.All);
@@ -77,9 +90,7 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
                 selector.AddSurrogate(sustituto.Tipo, streamingContext, sustituto);
             }
 
-            formatter.SurrogateSelector = selector;
-
-            return formatter;
+            return selector;
         }
     }
 }
