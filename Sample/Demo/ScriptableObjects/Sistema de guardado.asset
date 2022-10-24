@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ecf636f43d5abb44be0a7c401fc68ab, type: 3}
+  m_Name: Sistema de guardado
+  m_EditorClassIdentifier: 
+  _nombreCarpeta: saves
+  _extension: .save
+  Sustitutos:
+  - {fileID: 11400000, guid: 0dcd6415cc1fc5c4d8467788f173781a, type: 2}
+  - {fileID: 11400000, guid: c3b470192ecd1804580a728c760c23ba, type: 2}
