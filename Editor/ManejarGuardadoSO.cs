@@ -17,10 +17,12 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
         [SerializeField] private EventoGuardarSO _eventoGuardar;
         [SerializeField] private EventoCargarSO _eventoCargar;
 
-        private List<IGuardable> _objetosGuardables = new List<IGuardable>();
+        private List<IGuardable> _objetosGuardables;
 
         private void OnEnable()
         {
+            _objetosGuardables = new List<IGuardable>();
+
             if (_sincronizarObjetos != null)
                 _sincronizarObjetos.EventoSincronizar += GuardarObjetos;
 

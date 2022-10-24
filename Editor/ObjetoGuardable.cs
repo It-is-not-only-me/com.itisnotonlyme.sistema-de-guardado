@@ -10,7 +10,7 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
 
         private string _id = null;
 
-        private void Awake() => _sincronizarObjeto?.SincronzarGuardable(this);
+        private void Start() => _sincronizarObjeto?.SincronzarGuardable(this);
 
         public string Id()
         {
@@ -25,6 +25,9 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
 
             foreach (IGuardable guardable in GetComponents<IGuardable>())
             {
+                if (guardable == (IGuardable)this)
+                    continue;
+
                 string tipoDeDato = guardable.Id();
                 if (nuevoEstado.TryGetValue(tipoDeDato, out object estadoGuardable))
                     guardable.Cargar(estadoGuardable);
@@ -37,6 +40,9 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
 
             foreach (IGuardable guardable in GetComponents<IGuardable>())
             {
+                if (guardable == (IGuardable)this)
+                    continue;
+
                 string clave = guardable.Id();
                 estado[clave] = guardable.Guardar();
             }
