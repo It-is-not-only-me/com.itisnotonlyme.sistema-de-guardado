@@ -6,7 +6,7 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
 {
     public class ObjetoGuardable : MonoBehaviour, IGuardable
     {
-        [SerializeField] private EventoSincronizarObjeto _sincronizarObjeto;
+        [SerializeField] private EventoSincronizarObjetoSO _sincronizarObjeto;
 
         private string _id = null;
 
