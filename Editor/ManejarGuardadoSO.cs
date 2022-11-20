@@ -13,7 +13,7 @@ namespace ItIsNotOnlyMe.SistemaDeGuardado
 
         [Space]
 
-        [SerializeField] private EventoSincronizarObjeto _sincronizarObjetos;
+        [SerializeField] private EventoSincronizarObjetoSO _sincronizarObjetos;
         [SerializeField] private EventoGuardarSO _eventoGuardar;
         [SerializeField] private EventoCargarSO _eventoCargar;
 
